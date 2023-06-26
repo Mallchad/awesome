@@ -533,9 +533,11 @@ local function on_name_lost(_, _)
     bus_connection = nil
 end
 
-Gio.bus_own_name(Gio.BusType.SESSION, "org.freedesktop.Notifications",
-    Gio.BusNameOwnerFlags.NONE, GObject.Closure(on_bus_acquire),
-    GObject.Closure(on_name_acquired), GObject.Closure(on_name_lost))
+-- Don't register the notification handler.
+-- Catch the bus_id for future management
+--- dbus.bus_id = Gio.bus_own_name(Gio.BusType.SESSION, "org.freedesktop.Notifications",
+-- Gio.BusNameOwnerFlags.NONE, GObject.Closure(on_bus_acquire),
+-- GObject.Closure(on_name_acquired), GObject.Closure(on_name_lost))
 
 -- For testing
 dbus._notif_methods = notif_methods
